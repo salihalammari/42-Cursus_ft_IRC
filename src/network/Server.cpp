@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/07 19:26:49 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/07 19:38:48 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,29 @@ Server::~Server(void) {
 
 void	Server::DisconnectClient(int fd) {
 
-	
+	try {
+
+		Client *client = _client.at(fd);
+		client->leave();
+
+		char log[1000];
+		sprintf(log, "%s:%d has disconnected...", client->getHostName().c_str(), client->getPort());
+		ft_print_log(log);
+
+		_client.erase(fd);
+		for (pollfds_iterator it = _pollfds.begin(); it != _pollfds.end(); it++) {
+			if (it->fd != fd)
+				continue ;
+			_pollfds.erase(it);
+			close(fd);
+			break ;
+		}
+
+		delete client;
+
+	}
+	catch (const std::out_of_range &e) {}
+
 }
 
 void	Server::ConnectClient(void) {
