@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/06 21:56:46 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/07 19:26:49 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,92 @@ Server::Server(std::string const &port, std::string const &password) : _running(
 }
 
 Server::~Server(void) {
+}
+
+void	Server::DisconnectClient(int fd) {
+
+	
+}
+
+void	Server::ConnectClient(void) {
+
+	int fd;
+	/*
+	** Sockaddr_in used to represent an Internet socket address
+	** Sin_family specifies the address family (AKA IPv4/IPv6)
+	** Sin_port specifies the port number in network byte order
+	*/
+	sockaddr_in s_addr = {};
+	socklen_t	s_len = sizeof(s_addr);
+
+	/*
+	** Accept() is a function used to accept a connection request on a socket
+	** s_addr will be filled with the address of the connecting socket
+	** socklen_t is the variable that specifies the size of the "sockaddr" structure
+	*/
+	fd = accept(_sock, (struct sockaddr *)&s_addr, &s_len);
+	if (fd < 0) {
+		throw std::runtime_error("Error while accepting client connection...");
+	}
+
+	/*
+	** Pollfd is a structure used to describe a file descriptor that being
+	** monitored by poll()
+	** POLLIN is the event that poll should monitor for
+	*/
+	pollfd	pollfd = {_sock, POLLIN, 0};
+	_pollfds.push_back(pollfd);
+
+
+	/*
+	** Getnameinfo() is a function that is used to convert a socket
+	** address to a hostname and service name
+	*/
+	char hostname[NI_MAXHOST];
+	if (getnameinfo((struct sockaddr *)&s_addr, s_len, hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV) < 0) {
+		throw std::runtime_error("Error while getting hostname on new client...");
+	}
+
+	Client *client = new Client(fd, hostname, ntohs(s_addr.sin_port));
+	_client.insert(std::make_pair(fd, client));
+
+	char log[1000];
+	sprintf(log, "%s:%d has connected", client->getHostName().c_str(), client->getPort());
+	ft_print_log(log);
+
+}
+
+void	Server::start(void) {
+
+	pollfd	server_fd = {_sock, POLLIN, 0};
+	_pollfds.push_back(server_fd);
+
+	while (_running) {
+
+		if (poll(_pollfds.begin().base(), _pollfds.size(), -1) < 9) {
+			throw std::runtime_error("Error while Polling from fd...");
+		}
+
+		pollfds_iterator	it;
+		for (it = _pollfds.begin(); it != _pollfds.end(); it++) {
+			if (it->revents == 0)
+				continue ;
+
+			if ((it->revents & POLLHUP) == POLLHUP) {
+				DisconnectClient(it->fd);
+				break ;
+			}
+
+			if ((it->revents & POLLIN) == POLLIN) {
+				if (it->fd == _sock) {
+					ConnectClient();
+					break ;
+				}
+			}
+		}
+
+	}
+
 }
 
 int	Server::newSocket(void) {
