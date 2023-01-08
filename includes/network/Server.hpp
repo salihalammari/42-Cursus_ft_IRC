@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/08 11:22:34 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 12:12:23 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Channel;
 # include <poll.h>
 # include <string.h>
 # include "../Utils.hpp"
+# include <errno.h>
 
 # define MAX_CONNECTIONS 1000
 
@@ -67,6 +68,8 @@ public:
 	Channel	*getChannel(std::string const &name);
 	Channel	*createChannel(std::string const &name, std::string const &password, Client *client);
 	Client	*getClient(std::string const &nickname);
+
+	std::string	readMessage(int fd);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/08 11:26:50 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 15:23:26 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,4 +218,23 @@ Client	*Server::getClient(std::string const &nickname) {
 			return (it->second);
 	}
 	return (NULL);
+}
+
+std::string Server::readMessage(int fd) {
+
+	std::string msg;
+	char buffer[100];
+
+	bzero(buffer, 100);
+
+	while (!std::strstr(buffer, "\r\n")) {
+
+		bzero(buffer, 1000);
+		if (recv(fd, buffer, 100, 0) < 0) {
+			if (errno != EWOULDBLOCK)
+				throw std::runtime_error("Error while reading buffer from client");
+		}
+		msg.append(buffer);
+	}
+	return (msg);
 }
