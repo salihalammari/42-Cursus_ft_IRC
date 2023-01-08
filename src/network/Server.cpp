@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/07 19:38:48 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 11:26:50 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,28 @@ Server::Server(std::string const &port, std::string const &password) : _running(
 Server::~Server(void) {
 }
 
+void	Server::MessageClient(int fd) {
+
+	try {
+		Client *client = _clients.at(fd);
+		// ??COMMAND
+	}
+	catch (const std::out_of_range &e) {}
+
+}
+
 void	Server::DisconnectClient(int fd) {
 
 	try {
 
-		Client *client = _client.at(fd);
+		Client *client = _clients.at(fd);
 		client->leave();
 
 		char log[1000];
 		sprintf(log, "%s:%d has disconnected...", client->getHostName().c_str(), client->getPort());
 		ft_print_log(log);
 
-		_client.erase(fd);
+		_clients.erase(fd);
 		for (pollfds_iterator it = _pollfds.begin(); it != _pollfds.end(); it++) {
 			if (it->fd != fd)
 				continue ;
@@ -41,9 +51,7 @@ void	Server::DisconnectClient(int fd) {
 			close(fd);
 			break ;
 		}
-
 		delete client;
-
 	}
 	catch (const std::out_of_range &e) {}
 
@@ -89,7 +97,7 @@ void	Server::ConnectClient(void) {
 	}
 
 	Client *client = new Client(fd, hostname, ntohs(s_addr.sin_port));
-	_client.insert(std::make_pair(fd, client));
+	_clients.insert(std::make_pair(fd, client));
 
 	char log[1000];
 	sprintf(log, "%s:%d has connected", client->getHostName().c_str(), client->getPort());
@@ -123,6 +131,7 @@ void	Server::start(void) {
 					ConnectClient();
 					break ;
 				}
+				MessageClient(it->fd);
 			}
 		}
 
@@ -182,4 +191,31 @@ int	Server::newSocket(void) {
 		throw std::runtime_error("Error while listening on socket...");
 	}
 	return (sockfd);
+}
+
+Channel	*Server::getChannel(std::string const &name) {
+
+	for (channel_iterator it = _channels.begin() ; it != _channels.end(); it++) {
+		if (it.operator*().getName() == name) {
+			return (it.operator*());
+		}
+		return (NULL);
+	}
+}
+
+Channel	*Server::createChannel(std::string const &name, std::string const &password, Client *client) {
+
+	Channel	*channel = new Channel(name, password, client);
+	_channels.push_back(channel);
+
+	return (channel);
+}
+
+Client	*Server::getClient(std::string const &nickname) {
+
+	for (client_iterator it = _clients.begin(); it != _clients.end(); it++) {
+		if (!nickname.compare(it->second->getNickName()))
+			return (it->second);
+	}
+	return (NULL);
 }

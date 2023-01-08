@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/07 19:26:38 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 11:22:34 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SERVER_HPP
 
 class Client;
+class Channel;
 
 # include <iostream>
 # include <sys/types.h>
@@ -38,15 +39,18 @@ class Client;
 class Server {
 
 private:
-	int					_sock;
-	int					_running;
-	const std::string	_host;
-	const std::string	_port;
-	const std::string	_password;
-	std::vector<pollfd>	_pollfds;
-	std::map<int, Client*>	_client;
+	int						_sock;
+	int						_running;
+	const std::string		_host;
+	const std::string		_port;
+	const std::string		_password;
+	std::vector<pollfd>		_pollfds;
+	std::map<int, Client*>	_clients;
+	std::vector<Channel*>	_channels;
 
-	typedef std::vector<pollfd>::iterator pollfds_iterator;
+	typedef std::vector<pollfd>::iterator		pollfds_iterator;
+	typedef std::map<int, Client*>::iterator	client_iterator;
+	typedef std::vector<Channel*>::iterator		channel_iterator;
 
 
 public:
@@ -58,6 +62,11 @@ public:
 
 	void	DisconnectClient(int fd);
 	void	ConnectClient(void);
+	void	MessageClient(int fd);
+
+	Channel	*getChannel(std::string const &name);
+	Channel	*createChannel(std::string const &name, std::string const &password, Client *client);
+	Client	*getClient(std::string const &nickname);
 };
 
 #endif
