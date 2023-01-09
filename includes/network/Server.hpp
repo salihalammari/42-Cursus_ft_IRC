@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/08 12:12:23 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 17:06:06 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 class Client;
 class Channel;
+class CommandHandeler;
 
 # include <iostream>
 # include <sys/types.h>
@@ -48,6 +49,7 @@ private:
 	std::vector<pollfd>		_pollfds;
 	std::map<int, Client*>	_clients;
 	std::vector<Channel*>	_channels;
+	CommandHandeler*		_commandHandler;
 
 	typedef std::vector<pollfd>::iterator		pollfds_iterator;
 	typedef std::map<int, Client*>::iterator	client_iterator;
@@ -70,6 +72,7 @@ public:
 	Client	*getClient(std::string const &nickname);
 
 	std::string	readMessage(int fd);
+	std::string getPassword(void) const;
 };
 
 #endif

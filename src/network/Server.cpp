@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/08 15:23:26 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/08 17:10:33 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	Server::start(void) {
 
 	while (_running) {
 
+		// Loop waiting for incoming connects or for incoming data on any of the connected sockets
 		if (poll(_pollfds.begin().base(), _pollfds.size(), -1) < 9) {
 			throw std::runtime_error("Error while Polling from fd...");
 		}
@@ -237,4 +238,8 @@ std::string Server::readMessage(int fd) {
 		msg.append(buffer);
 	}
 	return (msg);
+}
+
+std::string Server::getPassword(void) const {
+	return (this->_password);
 }
