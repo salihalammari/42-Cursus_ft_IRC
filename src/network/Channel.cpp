@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:16:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/17 13:13:59 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/17 17:26:32 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	Channel::removeClient(Client *client) {
 }
 
 void	Channel::kickClient(Client *client, Client *target, std::string const &reason) {
-	broadcast(REPLY_KICK(client->getPrefix(), _name, target->getNickName(), reason));
+	broadcast(RPL_KICK(client->getPrefix(), _name, target->getNickName(), reason));
 	removeClient(target);
 
 	char log[100];

@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/17 13:09:32 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/17 17:26:19 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string>
 # include <time.h>
 
-# define REPLY_KICK(source, channel, target, reason) ":" + source + "KICK" + channel + " " + target + " :" + reason
+# define RPL_KICK(source, channel, target, reason) ":" + source + "KICK" + channel + " " + target + " :" + reason
 
 void	ft_print_log(const std::string &log) {
 	time_t  raw;
