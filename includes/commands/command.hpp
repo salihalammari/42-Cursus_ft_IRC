@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/17 20:31:17 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/17 20:36:27 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ protected:
 	bool	_authRequired;
 
 public:
-	explicit Command(Server *server, bool authRequired = true);
+	explicit Command(Server *server, bool authRequired = true) : _server(server), _authRequired(authRequired) {}
+	~Command(void);
 
 };
 
