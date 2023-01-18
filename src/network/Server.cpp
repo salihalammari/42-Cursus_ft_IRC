@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 18:52:01 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 19:57:15 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ Server::Server(std::string const &port, std::string const &password) : _running(
 	 _port(port), _password(password) {
 
 	_sock = newSocket();
-
+	_commandHandler = new CommandHandler(this);
 }
 
 Server::~Server(void) {
+	delete _commandHandler;
 }
 
 void	Server::MessageClient(int fd) {
 
 	try {
 		Client *client = _clients.at(fd);
+		(void) client; // TEMP;
 		// ??COMMAND
 	}
 	catch (const std::out_of_range &e) {}
@@ -197,11 +199,11 @@ int	Server::newSocket(void) {
 Channel	*Server::getChannel(std::string const &name) {
 
 	for (channel_iterator it = _channels.begin() ; it != _channels.end(); it++) {
-		if (it.operator*().getName() == name) {
+		if (it.operator*()->getName() == name) {
 			return (it.operator*());
 		}
-		return (NULL);
 	}
+	return (NULL);
 }
 
 Channel	*Server::createChannel(std::string const &name, std::string const &password, Client *client) {

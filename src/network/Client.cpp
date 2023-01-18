@@ -6,11 +6,11 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:26:29 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/18 18:49:44 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 20:00:32 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Client.hpp"
+#include "../../includes/network/Client.hpp"
 
 Client::Client(int fd_, int port_, std::string hostname_)
 {
@@ -79,6 +79,10 @@ std::string Client::getPrefix(void) const
     else
         host = "@" + this->hostname;
     return ( this->nick_name + user + host);
+}
+
+void	Client::setChannel(Channel *_channel) {
+	this->channel = _channel;
 }
 
 Channel*  Client::getChannel(void) const

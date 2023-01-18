@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 18:52:33 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 19:56:05 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class CommandHandler;
 # include <sstream>
 # include "Client.hpp"
 # include "Channel.hpp"
+# include "../commands/CommandHandler.hpp"
 
 # define MAX_CONNECTIONS 1000
 

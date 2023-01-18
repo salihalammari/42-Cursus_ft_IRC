@@ -6,14 +6,14 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:16:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/17 17:26:32 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 19:53:02 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/network/Channel.hpp"
 
 Channel::Channel(std::string const &name, std::string const &password, Client *admin) :
-	_name(name), _admin(admin), _k(password), _n(false), _l(0){
+	_name(name), _admin(admin), _k(password), _l(0), _n(false) {
 
 }
 
@@ -35,7 +35,7 @@ void	Channel::broadcast(std::string const &message, Client *out) {
 
 void	Channel::removeClient(Client *client) {
 	_clients.erase(std::remove(_clients.begin(), _clients.end(), client), _clients.end());
-	client.setChannel(NULL);
+	client->setChannel(NULL);
 
 	if (_clients.empty()) {
 		// HELLO WORLD
@@ -46,7 +46,7 @@ void	Channel::removeClient(Client *client) {
 		_admin = _clients.begin().operator*();
 
 		char log[100];
-		sprintf(log, "%s is now admin of channel %s.", _admin.getNickName().c_str(), _name.c_str());
+		sprintf(log, "%s is now admin of channel %s.", _admin->getNickName().c_str(), _name.c_str());
 		ft_print_log(log);
 	}
 }
@@ -56,7 +56,7 @@ void	Channel::kickClient(Client *client, Client *target, std::string const &reas
 	removeClient(target);
 
 	char log[100];
-	sprintf(log, "%s kicked %s from channel %s.", client->getNickName(), target.getNickName(), _name.c_str());
+	sprintf(log, "%s kicked %s from channel %s.", client->getNickName().c_str(), target->getNickName().c_str(), _name.c_str());
 	ft_print_log(log);
 }
 

@@ -6,14 +6,14 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 15:38:03 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 19:50:47 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/commands/CommandHandler.hpp"
 
-CommandHandler::CommandHandler(Server *server) : _server(server) {
-
+CommandHandler::CommandHandler(Server *server) {
+	this->_server = server;
 }
 
 CommandHandler::~CommandHandler(void) {

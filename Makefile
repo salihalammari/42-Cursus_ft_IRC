@@ -6,7 +6,7 @@
 #    By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 18:53:12 by sayar             #+#    #+#              #
-#    Updated: 2023/01/18 19:41:08 by sayar            ###   ########.fr        #
+#    Updated: 2023/01/18 19:49:10 by sayar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,9 @@ all : $(NAME)
 $(PREFIX) :
 	@mkdir -p $(PREFIX)
 	@mkdir -p $(PREFIX)/src
-	@mkdir -p $(PREFIX)/commands
-	@mkdir -p $(PREFIX)/commands/Commands_Impl
-	@mkdir -p $(PREFIX)/network
+	@mkdir -p $(PREFIX)/src/commands
+	@mkdir -p $(PREFIX)/src/commands/Commands_Impl
+	@mkdir -p $(PREFIX)/src/network
 
 $(NAME) : $(PREFIX) ${OBJ} ${INC}
 	${CC} ${FLAGS} ${OBJ} -o ${NAME}
