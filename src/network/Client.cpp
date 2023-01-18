@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:26:29 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/18 20:00:32 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 20:13:42 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void Client::join(Channel *channel)
     reply(channel->getName() + ": " + users); //RPL_names
     reply(channel->getName() + ": End of NAMES list"); //RPL_endnames
 
-    ft_print_log(this->nick_name + "has joined channel " + channel->getName());
+	char log[1000];
+	sprintf(log, "%s has joined the channel %s", getNickName().c_str(), channel->getName().c_str());
+    ft_print_log(log);
 }
 
 void Client::leave(void)
