@@ -6,15 +6,13 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 15:26:36 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 18:52:33 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
 
-class Client;
-class Channel;
 class CommandHandler;
 
 # include <iostream>
@@ -36,6 +34,8 @@ class CommandHandler;
 # include "../Utils.hpp"
 # include <errno.h>
 # include <sstream>
+# include "Client.hpp"
+# include "Channel.hpp"
 
 # define MAX_CONNECTIONS 1000
 

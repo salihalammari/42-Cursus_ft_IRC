@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/11 11:54:14 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 18:52:01 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	Server::ConnectClient(void) {
 		throw std::runtime_error("Error while getting hostname on new client...");
 	}
 
-	Client *client = new Client(fd, hostname, ntohs(s_addr.sin_port));
+	Client *client = new Client(fd, ntohs(s_addr.sin_port), hostname);
 	_clients.insert(std::make_pair(fd, client));
 
 	char log[1000];

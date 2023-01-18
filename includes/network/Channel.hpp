@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:07:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/17 13:06:08 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 19:42:50 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define CHANELL_HPP
 
 class Client;
+
 # include "Server.hpp"
+# include "Channel.hpp"
+# include "Client.hpp"
 
 class Channel {
 
