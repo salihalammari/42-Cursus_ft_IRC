@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CommandHandler.hpp                                 :+:      :+:    :+:   */
+/*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 09:58:29 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 12:53:23 by sayar            ###   ########.fr       */
+/*   Created: 2023/01/18 11:52:57 by sayar             #+#    #+#             */
+/*   Updated: 2023/01/18 12:33:50 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMANDHANDLER_HPP
-# define COMMANDHANDLER_HPP
+#ifndef CLIENT_HPP
+# define CLIENT_HPP
 
-# include "../network/Channel.hpp"
-# include "../network/Server.hpp"
-# include "Command.hpp"
-# include <map>
+# include "Server.hpp"
+# include "Channel.hpp"
 
-class CommandHandler {
+class Client {
 
 private:
-	Server							*_server;
-	std::map<std::string, Command*>	_commands;
+	
 
 public:
-	CommandHandler(Server *server);
-	~CommandHandler(void);
 
-	void	request(Client *client, std::string const &message);
 
 };
 

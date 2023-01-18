@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 11:40:57 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 15:38:03 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,22 @@ void	CommandHandler::request(Client *client, std::string const &message) {
 		std::string name = syntax.substr(0, syntax.find(' '));
 
 		try {
+			Command	*command = _commands.at(name);
 
+			std::vector<std::string> arguments;
+			std::string				 buff;
+			std::stringstream		 ss(syntax.substr(name.length(), syntax.length()));
+
+			while (ss >> buff) {
+				arguments.push_back(buff);
+			}
+
+			if (/* Client state*/ command->authRequired()) {
+				client->reply(ERR_NOTREGISTRED(client->getNickName()));
+				return ;
+			}
+
+			command->execute(client, arguments);
 		}
 		catch (const std::out_of_range &e) {
 			client->reply(ERR_UNKNOWNCOMMAND(client->getNickName(), name));

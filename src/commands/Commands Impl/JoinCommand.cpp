@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CommandHandler.hpp                                 :+:      :+:    :+:   */
+/*   JoinCommand.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 09:58:29 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 12:53:23 by sayar            ###   ########.fr       */
+/*   Created: 2023/01/18 11:45:11 by sayar             #+#    #+#             */
+/*   Updated: 2023/01/18 11:47:01 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMANDHANDLER_HPP
-# define COMMANDHANDLER_HPP
+#ifndef JOINCOMMAND_HPP
+# define JOINCOMMAND_HPP
 
-# include "../network/Channel.hpp"
-# include "../network/Server.hpp"
-# include "Command.hpp"
-# include <map>
+# include "../../../includes/commands/CommandHandler.hpp"
 
-class CommandHandler {
 
-private:
-	Server							*_server;
-	std::map<std::string, Command*>	_commands;
-
-public:
-	CommandHandler(Server *server);
-	~CommandHandler(void);
-
-	void	request(Client *client, std::string const &message);
-
-};
 
 #endif

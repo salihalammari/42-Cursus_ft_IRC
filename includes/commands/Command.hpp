@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Command.hpp                                        :+:      :+:    :+:   */
+/*   command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 10:04:02 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 15:05:38 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_HPP
 # define COMMAND_HPP
-
-class Command;
 
 #include <string>
 #include <numeric>
@@ -35,7 +33,7 @@ class Command;
 **	PRIVMSG Command
 */
 
-class ACommand {
+class Command {
 
 protected:
 	Server	*_server;
@@ -43,13 +41,19 @@ protected:
 
 public:
 	explicit Command(Server *server, bool authRequired = true) : _server(server), _authRequired(authRequired) {}
-	~Command(void);
+	virtual ~Command(void) {};
 
 	bool authRequired(void) const {
 		return (_authRequired);
 	}
 
 	virtual void execute(Client *client, std::vector<std::string> arguments) = 0;
+
+};
+
+class JoinCommand : public Command {
+
+
 
 };
 
