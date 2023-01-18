@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 10:37:41 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/18 11:40:57 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	CommandHandler::request(Client *client, std::string const &message) {
 		std::string name = syntax.substr(0, syntax.find(' '));
 
 		try {
-			
+
 		}
 		catch (const std::out_of_range &e) {
 			client->reply(ERR_UNKNOWNCOMMAND(client->getNickName(), name));
