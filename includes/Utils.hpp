@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 15:36:05 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/19 19:49:50 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@
 # define ERR_NOTREGISTRED(source)						"451 " + source + " :You have not registred"
 
 
-void	ft_print_log(const std::string &log) {
-	time_t  raw;
-    struct tm *time_info;
-    char buff[80];
-
-    time(&raw);
-    time_info = localtime(&raw);
-
-    strftime(buff, sizeof(buff), "%d-%m-%Y %H-%M-%S", time_info);
-    std::string str(buff);
-
-    std::cout << "[" << str << "]" << log << std::endl;
-}
+void	ft_print_log(const std::string &log);
 
 #endif

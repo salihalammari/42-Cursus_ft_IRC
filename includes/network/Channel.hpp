@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:07:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:42:50 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/19 19:44:48 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class Client;
 # include "Server.hpp"
 # include "Channel.hpp"
 # include "Client.hpp"
+# include "../Utils.hpp"
 
 class Channel {
 

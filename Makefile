@@ -6,7 +6,7 @@
 #    By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 18:53:12 by sayar             #+#    #+#              #
-#    Updated: 2023/01/18 19:49:10 by sayar            ###   ########.fr        #
+#    Updated: 2023/01/19 19:50:08 by sayar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ INC = 	includes/commands/CommandHandler.hpp\
 		includes/Utils.hpp\
 
 SRC =	src/main.cpp\
+		src/Utils.cpp\
 		src/commands/CommandHandler.cpp\
 		src/commands/Commands_Impl/JoinCommand.cpp\
 		src/commands/Commands_Impl/KickCommand.cpp\

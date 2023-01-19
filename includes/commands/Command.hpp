@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:56:35 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/19 19:43:13 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ public:
 
 class JoinCommand : public Command {
 
+public:
+	JoinCommand(void);
+	~JoinCommand(void);
 
-
+	void	execute(Client *client, std::vector<std::string> arguments);
 };
 
 #endif

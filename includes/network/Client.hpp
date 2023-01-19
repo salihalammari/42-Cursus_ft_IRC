@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:09:42 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/18 19:45:03 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/19 19:44:57 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class Channel;
 # include <iostream>
 # include "Channel.hpp"
 # include <deque>
+# include "../Utils.hpp"
 
 # define HANDSHAKE 0
 # define LOGIN 1
