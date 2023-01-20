@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/20 16:19:05 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/20 22:55:19 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ std::string Server::readMessage(int fd) {
 
 	while (!std::strstr(buffer, "\r\n")) {
 
-		bzero(buffer, 1000);
+		bzero(buffer, 100);
 		if (recv(fd, buffer, 100, 0) < 0) {
 			if (errno != EWOULDBLOCK)
 				throw std::runtime_error("Error while reading buffer from client");
