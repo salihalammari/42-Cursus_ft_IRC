@@ -6,12 +6,14 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 09:58:29 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:50:10 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/20 16:20:04 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMANDHANDLER_HPP
 # define COMMANDHANDLER_HPP
+
+class Command;
 
 # include "../network/Channel.hpp"
 # include "../network/Server.hpp"

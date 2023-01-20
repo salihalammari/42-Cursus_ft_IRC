@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:26:29 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/18 20:13:42 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/20 16:22:28 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ Client::Client(int fd_, int port_, std::string hostname_)
     this->port = port_;
     this->hostname = hostname_;
     this->state = HANDSHAKE;
+	this->channel = NULL;
 }
 
 void    Client::write(std::string const &message)
 {
-    std::string buffer = message;
+    std::string buffer = message + "\r\n";
 
     if (send(this->fd, buffer.c_str(), buffer.length(), 0) < 0) {
 		throw std::runtime_error("Error while sending message to client");
@@ -38,11 +39,15 @@ void    Client::reply(std::string const &message)
 
 void    Client::welcome(void)
 {
-    if (this->state != LOGIN)
-        //error
+    if (this->state != LOGIN || user_name.empty() || real_name.empty() || nick_name.empty())
+        return ;
     this->state= PLAY;
-    reply("Welcome to the Internet Relay Network " + getPrefix());
 
+    reply(RPL_WELCOME(nick_name));
+
+	char log[100];
+	sprintf(log, "%s:%d is known as %s.", getHostName().c_str(), getPort(), getNickName().c_str());
+	ft_print_log(log);
 }
 
 void Client::join(Channel *channel)
@@ -53,8 +58,11 @@ void Client::join(Channel *channel)
     std::vector<std::string> nicknames = channel->getNicknames();
     for (std::vector<std::string>::iterator it = nicknames.begin(); it != nicknames.end(); it++)
         users += " ";
-    reply(channel->getName() + ": " + users); //RPL_names
-    reply(channel->getName() + ": End of NAMES list"); //RPL_endnames
+
+    reply(RPL_NAMREPLY(nick_name, this->channel->getName(), users));
+    reply(RPL_ENDOFNAMES(nick_name, this->channel->getName()));
+
+	channel->broadcast(RPL_JOIN(nick_name, channel->getName()));
 
 	char log[1000];
 	sprintf(log, "%s has joined the channel %s", getNickName().c_str(), channel->getName().c_str());
@@ -69,18 +77,21 @@ void Client::leave(void)
 
 std::string Client::getPrefix(void) const
 {
-    std::string user = this->user_name;
-    std::string host = this->hostname;
+    // std::string user = this->user_name;
+    // std::string host = this->hostname;
 
-    if (user_name.empty())
-        user = this->user_name;
-    else
-        user = "!" + this->user_name;
-    if (hostname.empty())
-        host = this->hostname;
-    else
-        host = "@" + this->hostname;
-    return ( this->nick_name + user + host);
+    // if (user_name.empty())
+    //     user = this->user_name;
+    // else
+    //     user = "!" + this->user_name;
+    // if (hostname.empty())
+    //     host = this->hostname;
+    // else
+    //     host = "@" + this->hostname;
+    // return ( this->nick_name + user + host);
+
+	return (nick_name + (user_name.empty() ? "" : "!" + user_name) + (hostname.empty() ? "" : "@" + hostname));
+
 }
 
 void	Client::setChannel(Channel *_channel) {
@@ -127,3 +138,6 @@ int Client::getState(void) const
     return (this->state);
 }
 
+void	Client::setNickName(std::string const &name) {
+	this->nick_name = name;
+}

@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:57:15 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/20 16:19:05 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	Server::MessageClient(int fd) {
 
 	try {
 		Client *client = _clients.at(fd);
-		(void) client; // TEMP;
-		// ??COMMAND
+		_commandHandler->request(client, readMessage(fd));
 	}
 	catch (const std::out_of_range &e) {}
 
@@ -112,10 +111,12 @@ void	Server::start(void) {
 	pollfd	server_fd = {_sock, POLLIN, 0};
 	_pollfds.push_back(server_fd);
 
+	ft_print_log("Server is listening...");
+
 	while (_running) {
 
 		// Loop waiting for incoming connects or for incoming data on any of the connected sockets
-		if (poll(_pollfds.begin().base(), _pollfds.size(), -1) < 9) {
+		if (poll(_pollfds.begin().base(), _pollfds.size(), -1) < 0) {
 			throw std::runtime_error("Error while Polling from fd...");
 		}
 
