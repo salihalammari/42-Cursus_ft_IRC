@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:26:29 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/20 16:22:28 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/31 11:46:27 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ std::string Client::getUserName(void) const
 
 int Client::getState(void) const
 {
-    return (this->state);
+    return (this->state == PLAY);
 }
 
 void	Client::setNickName(std::string const &name) {

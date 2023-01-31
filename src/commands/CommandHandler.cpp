@@ -6,7 +6,7 @@
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:50:47 by sayar            ###   ########.fr       */
+/*   Updated: 2023/01/31 11:06:24 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	CommandHandler::request(Client *client, std::string const &message) {
 				arguments.push_back(buff);
 			}
 
-			if (/* Client state*/ command->authRequired()) {
+			if (!client->getState() && command->authRequired()) {
 				client->reply(ERR_NOTREGISTRED(client->getNickName()));
 				return ;
 			}
