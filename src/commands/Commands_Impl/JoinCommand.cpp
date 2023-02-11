@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   JoinCommand.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 17:17:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/19 19:51:18 by sayar            ###   ########.fr       */
+/*   Created: 2023/01/18 11:45:11 by sayar             #+#    #+#             */
+/*   Updated: 2023/01/18 11:47:01 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/network/Server.hpp"
+#ifndef JOINCOMMAND_HPP
+# define JOINCOMMAND_HPP
 
-int main(int ac, char **av) {
+# include "../../../includes/commands/CommandHandler.hpp"
 
-	try {
 
-		if (ac != 3) {
-			throw std::runtime_error("Usage: ./ircserv <port> <password>");
-		}
 
-		Server server(av[1], av[2]);
-		server.start();
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
-}
+#endif
