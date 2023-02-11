@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   NickCommand.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 17:17:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/19 19:51:18 by sayar            ###   ########.fr       */
+/*   Created: 2023/01/20 16:03:08 by sayar             #+#    #+#             */
+/*   Updated: 2023/01/20 22:54:55 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/network/Server.hpp"
+# include "../../../includes/commands/Command.hpp"
 
-int main(int ac, char **av) {
+NickCommand::NickCommand(Server *server, bool auth) : Command(server, auth) {
+}
 
-	try {
+NickCommand::~NickCommand(void) {}
 
-		if (ac != 3) {
-			throw std::runtime_error("Usage: ./ircserv <port> <password>");
-		}
-
-		Server server(av[1], av[2]);
-		server.start();
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+void	NickCommand::execute(Client *client, std::vector<std::string> arguments) {
+    (void)client;
+    (void)arguments;
 }

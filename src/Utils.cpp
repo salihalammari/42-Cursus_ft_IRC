@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 17:17:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/19 19:51:18 by sayar            ###   ########.fr       */
+/*   Created: 2023/01/19 19:49:22 by sayar             #+#    #+#             */
+/*   Updated: 2023/01/19 19:49:40 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/network/Server.hpp"
+# include "../includes/Utils.hpp"
 
-int main(int ac, char **av) {
+void	ft_print_log(const std::string &log) {
+	time_t  raw;
+    struct tm *time_info;
+    char buff[80];
 
-	try {
+    time(&raw);
+    time_info = localtime(&raw);
 
-		if (ac != 3) {
-			throw std::runtime_error("Usage: ./ircserv <port> <password>");
-		}
+    strftime(buff, sizeof(buff), "%d-%m-%Y %H-%M-%S", time_info);
+    std::string str(buff);
 
-		Server server(av[1], av[2]);
-		server.start();
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+    std::cout << "[" << str << "]" << log << std::endl;
 }
