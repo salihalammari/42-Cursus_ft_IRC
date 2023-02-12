@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/11 15:22:40 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:53:59 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Server;
 #include <numeric>
 #include <regex>
 #include "../network/Server.hpp"
+#include "../network/Channel.hpp"
 
 /*
 **	JOIN Command
@@ -56,7 +57,7 @@ public:
 class JoinCommand : public Command {
 
 public:
-	JoinCommand(Server *server, bool auth);
+	JoinCommand(Server *server);
 	~JoinCommand(void);
 
 	void	execute(Client *client, std::vector<std::string> arguments);
