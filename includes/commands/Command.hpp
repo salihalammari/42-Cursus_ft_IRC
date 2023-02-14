@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/11 15:53:59 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:41:34 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,6 @@ class ModeCommand : public Command{
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
 
-class UserCommand : public Command{
-	
-	public:
-		UserCommand(Server *server, bool auth);
-		~UserCommand(void);
-
-		void	execute(Client *client, std::vector<std::string> arguments);
-};
-
 class PassCommand : public Command{
 
 	public:
@@ -135,7 +126,7 @@ class PrivMCommand : public Command{
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
 
-class QuitCommand : public command{
+class QuitCommand : public Command{
 
 	public:
 		QuitCommand(Server *server, bool auth);

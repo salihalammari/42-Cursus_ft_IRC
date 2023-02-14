@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:45:11 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/12 20:11:29 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:39:15 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,9 @@ void	JoinCommand::execute(Client *client, std::vector<std::string> arguments)
     std::string name = arguments[0];
     std::string password = arguments.size() > 1 ? arguments[1] : "";
     Channel* channel = client->getChannel();
-    if(channel->_modes.find_first_of("i") != std::string::npos)
+    if(channel->getMaxClients() == channel->getNumClients())
     {
-        client->reply(ERR_INVITEONLYCHAN(name));
-        return;
-    }
-    if(channel->_modes.("l") != std::string::npos)
-    {
-        client->reply(ERR_CHANNELISFULL(name));
+        client->reply(ERR_CHANNELISFULL(client->getNickName(), name));
         return;
     }
     
@@ -56,12 +51,12 @@ void	JoinCommand::execute(Client *client, std::vector<std::string> arguments)
     if(channel->getPassword() != password)
     {
         client->reply(ERR_BADCHANNELKEY(client->getNickName(), name));
-        retif(!channel)
+        return;
+    }
+    if(!channel)
     {
         _server->createChannel(name, password, client);
         return;
-    }
-    urn;
     }
 
     client->join(channel);
