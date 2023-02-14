@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:26:29 by schahid           #+#    #+#             */
-/*   Updated: 2023/01/31 11:46:27 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/14 21:59:57 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void Client::join(Channel *channel)
 
 void Client::leave(void)
 {
-    this->channel->removeClient(this);
+    // this->channel->removeClient(this);
     ft_print_log(this->nick_name + "has left channel " + channel->getName());
 }
 
@@ -140,4 +140,16 @@ int Client::getState(void) const
 
 void	Client::setNickName(std::string const &name) {
 	this->nick_name = name;
+}
+
+void	Client::setState(int _state) {
+	this->state = _state;
+}
+
+void	Client::setRealName(std::string const &name) {
+	this->real_name = name;
+}
+
+void	Client::setUserName(std::string const &name) {
+	this->user_name = name;
 }

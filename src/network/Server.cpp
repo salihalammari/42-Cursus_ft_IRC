@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/20 22:55:19 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/14 22:02:06 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	Server::ConnectClient(void) {
 	** monitored by poll()
 	** POLLIN is the event that poll should monitor for
 	*/
-	pollfd	pollfd = {_sock, POLLIN, 0};
+	pollfd	pollfd = {fd, POLLIN, 0};
 	_pollfds.push_back(pollfd);
 
 
