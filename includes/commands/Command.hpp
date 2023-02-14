@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/13 14:41:34 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/14 21:16:57 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ class PassCommand : public Command{
 class PartCommand : public Command{
 
 	public:
-		PartCommand(Server *server, bool auth);
+		PartCommand(Server *server);
 		~PartCommand(void);
 		
 		void	execute(Client *client, std::vector<std::string> arguments);
