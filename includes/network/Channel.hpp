@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:07:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/19 19:44:48 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/12 20:11:47 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Channel {
 
 private:
 	std::string				_name;
+	std::string				_modes;
 	Client					*_admin;
 	std::vector<Client*>	_clients;
 

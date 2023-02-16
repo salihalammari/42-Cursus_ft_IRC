@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/06 11:11:49 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:48:31 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <time.h>
 
 /* COMMAND REPLIES */
-# define RPL_KICK(source, channel, target, reason)			":" + source + " KICK" + channel + " " + target + " :" + reason
+# define RPL_KICK(source, channel, target, reason)			":" + source + " KICK " + channel + " " + target + " :" + reason
 # define RPL_JOIN(source, channel)							":" + source + " JOIN :" + channel
 # define RPL_PART(source, channel)							":" + source + " PART :" + channel
 # define RPL_PRIVMSG(source, target, message)				":" + source + " PRIVMSG " + target + " :" + message
@@ -44,7 +44,9 @@
 # define ERR_USERNOTINCHANNEL(source, nickname, channel)	"441 " + source + " " + nickname + " " + channel + " :They aren't on that channel"
 # define ERR_CHANOPRIVSNEEDED(source, channel)				"482 " + source + " " + channel + " :You're not channel operator"
 # define ERR_CHANNELISFULL(source, channel)					"471 " + source + " " + channel + " :Cannot join channel (+l)"
+# define ERR_INVITEONLYCHAN(channel)					    "473 " + source + " " + channel + " :Cannot join channel(+i)"
 # define ERR_CANNOTSENDTOCHAN(source, channel)				"404 " + source + " " + channel + " :Cannot send to channel"
+
 
 /* NUMERIC REPLIES */
 # define RPL_WELCOME(source)								"001 " + source + " :Welcome to the Internet Relay Network"

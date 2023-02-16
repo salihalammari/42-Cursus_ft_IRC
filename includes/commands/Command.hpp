@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command.hpp                                        :+:      :+:    :+:   */
+/*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/20 16:09:47 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/16 20:50:30 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Server;
 #include <numeric>
 #include <regex>
 #include "../network/Server.hpp"
+#include "../network/Channel.hpp"
 
 /*
 **	JOIN Command
@@ -56,7 +57,7 @@ public:
 class JoinCommand : public Command {
 
 public:
-	JoinCommand(Server *server, bool auth);
+	JoinCommand(Server *server);
 	~JoinCommand(void);
 
 	void	execute(Client *client, std::vector<std::string> arguments);
@@ -69,6 +70,87 @@ public:
 	~NickCommand(void);
 
 	void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class ModeCommand : public Command{
+	
+	public:
+		ModeCommand(Server *server);
+		~ModeCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class PassCommand : public Command{
+
+	public:
+		PassCommand(Server *server, bool auth);
+		~PassCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class PartCommand : public Command{
+
+	public:
+		PartCommand(Server *server);
+		~PartCommand(void);
+		
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class PingCommand : public Command{
+
+	public:
+		PingCommand(Server *server, bool auth);
+		~PingCommand(void);
+		
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class PongCommand : public Command{
+
+	public:
+		PongCommand(Server *server, bool auth);
+		~PongCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class PrivMsgCommand : public Command{
+
+	public:
+		PrivMsgCommand(Server *server);
+		~PrivMsgCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class QuitCommand : public Command{
+
+	public:
+		QuitCommand(Server *server, bool auth);
+		~QuitCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class UserCommand : public Command{
+	
+	public:
+		UserCommand(Server *server, bool auth);
+		~UserCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class KickCommand : public Command{
+
+	public:
+		KickCommand(Server *server);
+		~KickCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
 };
 
 #endif
