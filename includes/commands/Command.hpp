@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/14 21:16:57 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:50:30 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ public:
 class ModeCommand : public Command{
 	
 	public:
-		ModeCommand(Server *server, bool auth);
+		ModeCommand(Server *server);
 		~ModeCommand(void);
 
 		void	execute(Client *client, std::vector<std::string> arguments);
@@ -117,11 +117,11 @@ class PongCommand : public Command{
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
 
-class PrivMCommand : public Command{
+class PrivMsgCommand : public Command{
 
 	public:
-		PrivMCommand(Server *server, bool auth);
-		~PrivMCommand(void);
+		PrivMsgCommand(Server *server);
+		~PrivMsgCommand(void);
 
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
@@ -140,6 +140,15 @@ class UserCommand : public Command{
 	public:
 		UserCommand(Server *server, bool auth);
 		~UserCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class KickCommand : public Command{
+
+	public:
+		KickCommand(Server *server);
+		~KickCommand(void);
 
 		void	execute(Client *client, std::vector<std::string> arguments);
 };

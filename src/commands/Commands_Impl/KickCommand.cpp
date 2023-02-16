@@ -6,14 +6,52 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 16:12:21 by slammari          #+#    #+#             */
-/*   Updated: 2023/02/13 14:42:01 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:54:25 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KICKCOMMAND_HPP
-# define KICKCOMMAND_HPP
-
 # include "../../../includes/commands/CommandHandler.hpp"
-# include "../../../includes/commands/Command.hpp"
 
-#endif
+KickCommand::KickCommand(Server *server) : Command(server) 
+{
+}
+
+KickCommand::~KickCommand(void) {}
+
+void	KickCommand::execute(Client *client, std::vector<std::string> arguments) {
+
+	if (arguments.size() < 2) {
+		client->reply(ERR_NEEDMOREPARAMS(client->getNickName(), "KICK"));
+		return ;
+	}
+
+	std::string name = arguments[0];
+	std::string user = arguments[1];
+	std::string reason = "No reason specified..";
+
+	if ((arguments.size() >= 3 && arguments[2][0] != ':') || arguments[2].size() > 1) {
+		reason = "";
+		for (std::vector<std::string>::iterator it = arguments.begin() + 2; it != arguments.end(); it++) {
+			reason.append((*it) + " ");
+		}
+	}
+
+	Channel *channel = client->getChannel();
+	if (!channel || channel->getName() != name) {
+		client->reply(ERR_NOTONCHANNEL(client->getNickName(), name));
+		return ;
+	}
+
+	if (channel->getAdmin() != client) {
+		client->reply(ERR_CHANOPRIVSNEEDED(client->getNickName(), name));
+		return ;
+	}
+
+	Client *target = _server->getClient(user);
+	if (!target) {
+		client->reply(ERR_NOSUCHNICK(client->getNickName(), user));
+		return ;
+	}
+
+	channel->kickClient(client, target, reason);
+}

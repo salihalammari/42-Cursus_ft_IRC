@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/13 14:37:34 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:48:31 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <time.h>
 
 /* COMMAND REPLIES */
-# define RPL_KICK(source, channel, target, reason)			":" + source + " KICK" + channel + " " + target + " :" + reason
+# define RPL_KICK(source, channel, target, reason)			":" + source + " KICK " + channel + " " + target + " :" + reason
 # define RPL_JOIN(source, channel)							":" + source + " JOIN :" + channel
 # define RPL_PART(source, channel)							":" + source + " PART :" + channel
 # define RPL_PRIVMSG(source, target, message)				":" + source + " PRIVMSG " + target + " :" + message
