@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/16 20:47:35 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:09:16 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ CommandHandler::CommandHandler(Server *server) : _server(server) {
 	_commands["KICK"] = new KickCommand(_server);
 	_commands["PRIVMSG"] = new PrivMsgCommand(_server);
 	_commands["MODE"] = new ModeCommand(_server);
+	_commands["NOTICE"] = new NoticeCommand(_server);
 }
 
 CommandHandler::~CommandHandler(void) {

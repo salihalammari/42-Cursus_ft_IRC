@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:46:58 by slammari          #+#    #+#             */
-/*   Updated: 2023/02/16 20:47:43 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:18:24 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,17 @@ void	ModeCommand::execute(Client *client, std::vector<std::string> arguments) {
 				break ;
 			}
 
+			case ('k') : {
+				channel->setPassword(active ? arguments[p] : "");
+				channel->broadcast(RPL_MODE(client->getPrefix(), channel->getName(), (active ? "+k" : "-k"), (active ? arguments[p] : "")));
+				p += active ? 1 : 0;
+				break ;
+			}
+
 			default :
 				break ;
 		}
 		i++;
-
 	}
 
 }

@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/16 20:50:30 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:13:17 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,15 @@ class KickCommand : public Command{
 	public:
 		KickCommand(Server *server);
 		~KickCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class NoticeCommand : public Command{
+	
+	public:
+		NoticeCommand(Server *srver);
+		~NoticeCommand(void);
 
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
