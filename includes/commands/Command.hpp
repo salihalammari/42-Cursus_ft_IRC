@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/17 22:13:17 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/18 01:58:33 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class Server;
 **	QUIT Command
 **	NOTICE Command
 **	PRIVMSG Command
+**	WHOIS Command
 */
 
 class Command {
@@ -158,6 +159,15 @@ class NoticeCommand : public Command{
 	public:
 		NoticeCommand(Server *srver);
 		~NoticeCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+};
+
+class WhoisCommand : public Command{
+	
+	public:
+		WhoisCommand(Server *srver);
+		~WhoisCommand(void);
 
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
