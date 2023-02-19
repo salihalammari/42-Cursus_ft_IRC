@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/15 18:48:31 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:21:50 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@
 # define ERR_CHANNELISFULL(source, channel)					"471 " + source + " " + channel + " :Cannot join channel (+l)"
 # define ERR_INVITEONLYCHAN(channel)					    "473 " + source + " " + channel + " :Cannot join channel(+i)"
 # define ERR_CANNOTSENDTOCHAN(source, channel)				"404 " + source + " " + channel + " :Cannot send to channel"
+# define ERR_NOSUCHNICK(source, channel)		    		"404 " + source + " " + channel + " :Cannot send to channel"
 
 
 /* NUMERIC REPLIES */
 # define RPL_WELCOME(source)								"001 " + source + " :Welcome to the Internet Relay Network"
 # define RPL_NAMREPLY(source, channel, users)				"353 " + source + " = " + channel + " :" + users
 # define RPL_ENDOFNAMES(source, channel)					"366 " + source + " " + channel + " :End of NAMES list"
+# define RPL_WHOISUSER(source, user, hostname, real_name)   "311 " + source + " " + user + " " + host + " * :"+ real_name
+# define RPL_WHOISSERVER()                                  "312 " + nich_name + " " + user + " : " "
+# define RPL_ENDOFWHOIS(nick_name)                          "318 " + nich_name + " :End of /WHOIS list"
+# define RPL_ENDOFWHOWAS(nick_name)                         "369 " + Nickname + " :End of WHOWAS"
 
 void	ft_print_log(const std::string &log);
 
