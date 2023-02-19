@@ -27,10 +27,10 @@ void	WhoisCommand::execute(Client *client, std::vector<std::string> arguments)
 		return ;
 	}
 	
-	std::string 
-	Channel *channel = client->getChannel();
+	std::string name = argument[0];
+	Client *client = server->getClient(name);
 	
-	 if (channel.end())
+	 if (!client)
 	 {
 		client->reply(ERR_NOSUCHNICK(client->getNickName(), "WHOIS"));
 		return ;
