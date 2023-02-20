@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/18 20:22:25 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:14:38 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ CommandHandler::CommandHandler(Server *server) : _server(server) {
 	_commands["NOTICE"] = new WhoisCommand(_server);
 	_commands["PING"] = new PingCommand(_server);
 	_commands["PONG"] = new PongCommand(_server);
+	_commands["WHOIS"] = new WhoisCommand(_server);
 }
 
 CommandHandler::~CommandHandler(void) {

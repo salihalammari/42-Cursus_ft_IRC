@@ -6,14 +6,14 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/16 20:46:22 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:36:21 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/network/Server.hpp"
 
 Server::Server(std::string const &port, std::string const &password) : _running(1), _host("127.0.0.1"),
-	 _port(port), _password(password) {
+	 _port(port), _password(password), _name("miniIRC_Server") {
 
 	_sock = newSocket();
 	_commandHandler = new CommandHandler(this);
@@ -204,4 +204,8 @@ std::string Server::readMessage(int fd) {
 
 std::string Server::getPassword(void) const {
 	return (this->_password);
+}
+
+std::string Server::getName(void) const {
+	return (this->_name);
 }

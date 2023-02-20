@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:06:54 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/20 14:43:46 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/20 12:34:25 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ private:
 	const std::string		_host;
 	const std::string		_port;
 	const std::string		_password;
+	const std::string		_name;
 	std::vector<pollfd>		_pollfds;
 	std::map<int, Client*>	_clients;
 	std::vector<Channel*>	_channels;
@@ -75,6 +76,7 @@ public:
 
 	std::string	readMessage(int fd);
 	std::string getPassword(void) const;
+	std::string	getName(void) const;
 };
 
 #endif
