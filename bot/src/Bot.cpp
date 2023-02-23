@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bot.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:41:59 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/21 12:18:48 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/21 12:56:59 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ void	Bot::reply_Command(std::string const &source, std::string const &command, s
 
 		
 
-		// if (args.size() >= 2 && args.at(1).substr(1) == "HELP") {
-		// 	sendPrivMessage(nickname);
-		// 	return ;
-		// }
+		if (args.size() >= 2 && args.at(1).substr(1) == "HELP") {
+			sendPrivMessage(nickname);
+			return ;
+		}
 
 		// if (args.size() >= 2 && args.at(1).substr(1) == "WEATHER") {
 		// 	sendPrivMessage(nickname, "https://wttr.in/");

@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/20 13:14:38 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:39:07 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ void	CommandHandler::request(Client *client, std::string const &message) {
 		catch (const std::out_of_range &e) {
 			client->reply(ERR_UNKNOWNCOMMAND(client->getNickName(), name));
 		}
-
 	}
-
 }

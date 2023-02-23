@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:16:55 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/20 13:36:21 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:17:26 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ std::string Server::readMessage(int fd) {
 		}
 		msg.append(buffer);
 	}
+	std::cout << buffer << "<-" << std::endl;
 	return (msg);
 }
 
