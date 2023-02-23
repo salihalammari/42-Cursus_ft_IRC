@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:05:08 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/17 22:09:16 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:39:07 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ CommandHandler::CommandHandler(Server *server) : _server(server) {
 	_commands["NICK"] = new NickCommand(_server, false);
 	_commands["PASS"] = new PassCommand(_server, false);
 	_commands["USER"] = new UserCommand(_server, false);
+	_commands["QUIT"] = new QuitCommand(_server, false);
 
 	_commands["JOIN"] = new JoinCommand(_server);
 	_commands["PART"] = new PartCommand(_server);
@@ -23,6 +24,10 @@ CommandHandler::CommandHandler(Server *server) : _server(server) {
 	_commands["PRIVMSG"] = new PrivMsgCommand(_server);
 	_commands["MODE"] = new ModeCommand(_server);
 	_commands["NOTICE"] = new NoticeCommand(_server);
+	_commands["NOTICE"] = new WhoisCommand(_server);
+	_commands["PING"] = new PingCommand(_server);
+	_commands["PONG"] = new PongCommand(_server);
+	_commands["WHOIS"] = new WhoisCommand(_server);
 }
 
 CommandHandler::~CommandHandler(void) {
@@ -59,7 +64,5 @@ void	CommandHandler::request(Client *client, std::string const &message) {
 		catch (const std::out_of_range &e) {
 			client->reply(ERR_UNKNOWNCOMMAND(client->getNickName(), name));
 		}
-
 	}
-
 }

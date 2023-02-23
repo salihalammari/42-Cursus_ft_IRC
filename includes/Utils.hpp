@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:47:16 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/15 18:48:31 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:43:42 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define RPL_WELCOME(source)								"001 " + source + " :Welcome to the Internet Relay Network"
 # define RPL_NAMREPLY(source, channel, users)				"353 " + source + " = " + channel + " :" + users
 # define RPL_ENDOFNAMES(source, channel)					"366 " + source + " " + channel + " :End of NAMES list"
+# define RPL_WHOIS(source, user, hostname, real_name)       "311 " + source + " " + user + " " + hostname + " :"+ real_name
+
 
 void	ft_print_log(const std::string &log);
 

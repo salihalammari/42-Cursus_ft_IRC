@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+         #
+#    By: slammari <slammari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 18:53:12 by sayar             #+#    #+#              #
-#    Updated: 2023/01/20 22:56:49 by sayar            ###   ########.fr        #
+#    Updated: 2023/02/20 13:27:23 by slammari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =	src/main.cpp\
 		src/commands/Commands_Impl/PrivMsgcommand.cpp\
 		src/commands/Commands_Impl/QuitCommand.cpp\
 		src/commands/Commands_Impl/UserCommand.cpp\
+		src/commands/Commands_Impl/WhoisCommand.cpp\
 		src/network/Channel.cpp\
 		src/network/Server.cpp\
 		src/network/Client.cpp\
@@ -66,6 +67,9 @@ $(PREFIX)%.o : %.cpp ${INC}
 clean :
 	rm -rf $(OBJ)
 	@rm -rf $(PREFIX)
+
+run : re
+	./${NAME} 9000 E056DF6899
 
 fclean : clean
 	rm -rf $(NAME)

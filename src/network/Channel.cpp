@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:16:35 by sayar             #+#    #+#             */
-/*   Updated: 2023/01/18 19:53:02 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/20 11:58:40 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	Channel::removeClient(Client *client) {
 
 	if (_admin == client) {
 		_admin = _clients.begin().operator*();
-
 		char log[100];
 		sprintf(log, "%s is now admin of channel %s.", _admin->getNickName().c_str(), _name.c_str());
 		ft_print_log(log);
