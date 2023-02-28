@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:36:30 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/21 11:20:14 by sayar            ###   ########.fr       */
+/*   Updated: 2023/02/25 17:51:30 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ namespace ft {
 		std::unique_ptr<char[]> buffer(new char[size]);
 		std::snprintf(buffer.get(), size, format.c_str(), args ...);
 		return (std::string(buffer.get(), buffer.get() + size - 1));
-
 	}
-
 };
 
 

@@ -6,15 +6,18 @@
 #    By: slammari <slammari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 18:53:12 by sayar             #+#    #+#              #
-#    Updated: 2023/02/20 13:27:23 by slammari         ###   ########.fr        #
+#    Updated: 2023/02/27 20:39:21 by slammari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ircserv
 
+RED = \033[0;32m
+NC = \033[0m
+
 CC = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -g
 
 INC = 	includes/commands/CommandHandler.hpp\
 		includes/commands/Command.hpp\
@@ -35,10 +38,10 @@ SRC =	src/main.cpp\
 		src/commands/Commands_Impl/PassCommand.cpp\
 		src/commands/Commands_Impl/PingCommand.cpp\
 		src/commands/Commands_Impl/PongCommand.cpp\
-		src/commands/Commands_Impl/PrivMsgcommand.cpp\
+		src/commands/Commands_Impl/PrivMsgCommand.cpp\
 		src/commands/Commands_Impl/QuitCommand.cpp\
 		src/commands/Commands_Impl/UserCommand.cpp\
-		src/commands/Commands_Impl/WhoisCommand.cpp\
+		src/commands/Commands_Impl/NamesCommand.cpp\
 		src/network/Channel.cpp\
 		src/network/Server.cpp\
 		src/network/Client.cpp\
@@ -57,21 +60,25 @@ $(PREFIX) :
 	@mkdir -p $(PREFIX)/src/commands
 	@mkdir -p $(PREFIX)/src/commands/Commands_Impl
 	@mkdir -p $(PREFIX)/src/network
+	@mkdir -p $(PREFIX)/bot
+	@mkdir -p $(PREFIX)/bot/src
 
 $(NAME) : $(PREFIX) ${OBJ} ${INC}
-	${CC} ${FLAGS} ${OBJ} -o ${NAME}
+	@${CC} ${FLAGS} ${OBJ} -o ${NAME}
+	@printf "${RED}Server Created${NC}\n"
 
 $(PREFIX)%.o : %.cpp ${INC}
-	$(CC) $(FLAGS) -c -o $@ $<
+	@$(CC) $(FLAGS) -c -o $@ $<
 
 clean :
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 	@rm -rf $(PREFIX)
 
 run : re
-	./${NAME} 9000 E056DF6899
+	./$(NAME) 9000 E056DF6899
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@printf "${RED}Projmect Cleaned${NC}\n"
 
 re : fclean all
