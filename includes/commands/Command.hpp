@@ -6,7 +6,7 @@
 /*   By: slammari <slammari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:24:13 by sayar             #+#    #+#             */
-/*   Updated: 2023/02/20 13:15:23 by slammari         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:38:38 by slammari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,16 @@ class WhoisCommand : public Command{
 
 		void	execute(Client *client, std::vector<std::string> arguments);
 };
+
+class NamesCommand : public Command {
+
+	public:
+		NamesCommand(Server *server);
+		~NamesCommand(void);
+
+		void	execute(Client *client, std::vector<std::string> arguments);
+
+};
+
 
 #endif
