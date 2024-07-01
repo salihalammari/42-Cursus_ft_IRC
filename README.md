@@ -2,12 +2,12 @@ Circle 5 finally entered!
 As the first task, IRC was conducted.
 Have you ever heard of the word IRC?
 
-####1. IRC?
+#### 1. IRC?
 Internet Relay ChatIt is an acronym for real-time basic chat service.
 In normal communication networks, only people in each communication network can chat, but in IRC, if IRC servers are connected,
 users connected to different servers can chat together!
 
-####2. So how do you do network communication?!
+#### 2. So how do you do network communication?!
 
 🥨 TCP
 . It is a protocol used in the TCP/IP transport layer, which is the fourth layer in the seventh layer of the Internet.
